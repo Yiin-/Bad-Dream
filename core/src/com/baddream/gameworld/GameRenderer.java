@@ -4,6 +4,7 @@ import com.baddream.helpers.AssetLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -24,39 +25,30 @@ public class GameRenderer {
         gameWorld = world;
 
         cam = new OrthographicCamera();
-        cam.setToOrtho(true, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        cam.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         batch = new SpriteBatch();
 
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
+
+        Pixmap cursorImage = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
+        System.out.println(cursorImage.getHeight());
+        Gdx.input.setCursorImage(cursorImage, 0, 0);
+    }
+
+    public void resize() {
+        cam.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer.setProjectionMatrix(cam.combined);
     }
 
     public void render(float delta) {
-        Gdx.app.log("GameRenderer", "render");
 
-        /*
-         * 1. We draw a white background. This prevents flickering.
-         */
-
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        /*
-         * 2. We draw the Filled rectangle
-         */
-
-        // Tells shapeRenderer to begin drawing filled shapes
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-        shapeRenderer.setColor(1f, 1f, 1f, 1);
-
-        // Tells the shapeRenderer to finish rendering
-        // We MUST do this every time.
-        shapeRenderer.end();
-
-        // Begin SpriteBatch
         batch.begin();
+
         // Išjungiam permatomumą
         // Piešiam stuff kuris nenaudoja permatomo. For better performance.
         // batch.disableBlending();
@@ -70,5 +62,14 @@ public class GameRenderer {
 
         // End SpriteBatch
         batch.end();
+
+        // Juodos figūros
+        shapeRenderer.setColor(0, 0, 0, 1);
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        shapeRenderer.circle(gameWorld.getMainActor().getX(), gameWorld.getMainActor().getY(), 9);
+
+        shapeRenderer.end();
     }
 }

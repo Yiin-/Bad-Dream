@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class MainActor {
     private Vector2 position;
-    private Vector2 velocity;
-    private Vector2 acceleration;
 
     private int width;
     private int height;
@@ -19,13 +17,11 @@ public class MainActor {
         this.width = width;
         this.height = height;
         position = new Vector2(x, y);
-        velocity = new Vector2(0, 0);
-        acceleration = new Vector2(0, 460);
     }
 
     public void update(float delta) {
-
-        position = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        Gdx.app.log("MainActor", "update");
+        position.set(Gdx.input.getX(), Gdx.input.getY());
     }
 
     public void onClick() {
@@ -33,6 +29,7 @@ public class MainActor {
     }
 
     private void shoot() {
+        Gdx.app.log("MainActor", "shoot");
         AssetLoader.createExplosionFX(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
     }
 
