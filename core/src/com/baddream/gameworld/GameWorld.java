@@ -36,7 +36,7 @@ public class GameWorld {
 
         for (Bullet bullet : bullets) {
             bullet.update();
-            if(Gdx.graphics.getHeight() < bullet.getPosition().x || bullet.getPosition().x < 0
+            if(Gdx.graphics.getWidth() < bullet.getPosition().x || bullet.getPosition().x < 0
                     || Gdx.graphics.getHeight() < bullet.getPosition().y || bullet.getPosition().y < 0) {
                 bullets.removeValue(bullet, true);
             }
