@@ -18,8 +18,8 @@ public class Bullet {
         this.speed = speed;
     }
 
-    public void update() {
-        position.add(direction.cpy().scl(speed));
+    public float getSpeed() {
+        return speed;
     }
 
     public Vector2 getPosition() {

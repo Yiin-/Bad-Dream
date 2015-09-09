@@ -1,6 +1,8 @@
 package com.baddream.gameobjects;
 
+import com.baddream.managers.BulletsManager;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -9,17 +11,21 @@ import com.badlogic.gdx.math.Vector2;
 public class MainActor {
     private Vector2 position;
 
-    private int width;
-    private int height;
+    private BulletsManager bulletsManager;
 
-    public MainActor(float x, float y, int width, int height) {
-        this.width = width;
-        this.height = height;
+    public MainActor(float x, float y) {
         position = new Vector2(x, y);
+        bulletsManager = new BulletsManager();
     }
 
     public void update(float delta) {
         position.set(Gdx.input.getX(), Gdx.input.getY());
+
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            bulletsManager.create(position.cpy(), new Vector2(0, -1), 15f);
+        }
+
+        bulletsManager.update();
     }
 
     public void onClick() {
@@ -43,11 +49,7 @@ public class MainActor {
         return position.y;
     }
 
-    public float getWidth() {
-        return width;
-    }
-
-    public float getHeight() {
-        return height;
+    public BulletsManager getBulletsManager() {
+        return bulletsManager;
     }
 }

@@ -67,7 +67,7 @@ public class GameRenderer {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         // Kulkos
         shapeRenderer.setColor(1, 0, 0, 1);
-        for(Bullet bullet : gameWorld.getBullets()) {
+        for(Bullet bullet : gameWorld.getMainActor().getBulletsManager().getBullets()) {
             shapeRenderer.circle(bullet.getPosition().x, bullet.getPosition().y, 3);
         }
         shapeRenderer.end();
