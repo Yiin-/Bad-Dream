@@ -1,6 +1,5 @@
 package com.baddream.gameobjects;
 
-import com.baddream.helpers.AssetLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
@@ -30,7 +29,11 @@ public class MainActor {
 
     private void shoot() {
         Gdx.app.log("MainActor", "shoot");
-        AssetLoader.createExplosionFX(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+        //AssetLoader.createExplosionFX(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+    }
+
+    public Vector2 getPosition() {
+        return position;
     }
 
     public float getX() {

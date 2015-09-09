@@ -1,5 +1,6 @@
 package com.baddream.gameworld;
 
+import com.baddream.gameobjects.Bullet;
 import com.baddream.helpers.AssetLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -63,13 +64,18 @@ public class GameRenderer {
         // End SpriteBatch
         batch.end();
 
-        // Juodos figūros
-        shapeRenderer.setColor(0, 0, 0, 1);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        // Kulkos
+        shapeRenderer.setColor(1, 0, 0, 1);
+        for(Bullet bullet : gameWorld.getBullets()) {
+            shapeRenderer.circle(bullet.getPosition().x, bullet.getPosition().y, 3);
+        }
+        shapeRenderer.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
+        // Pagr veikėjas
+        shapeRenderer.setColor(0, 0, 0, 1);
         shapeRenderer.circle(gameWorld.getMainActor().getX(), gameWorld.getMainActor().getY(), 9);
-
         shapeRenderer.end();
     }
 }
