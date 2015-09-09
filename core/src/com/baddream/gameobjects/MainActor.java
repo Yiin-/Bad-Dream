@@ -19,7 +19,6 @@ public class MainActor {
     }
 
     public void update(float delta) {
-        Gdx.app.log("MainActor", "update");
         position.set(Gdx.input.getX(), Gdx.input.getY());
     }
 

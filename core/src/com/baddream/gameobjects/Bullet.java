@@ -19,9 +19,7 @@ public class Bullet {
     }
 
     public void update() {
-        Gdx.app.log("Bullet", "update");
         position.add(direction.cpy().scl(speed));
-        System.out.println(direction.cpy().scl(speed));
     }
 
     public Vector2 getPosition() {
