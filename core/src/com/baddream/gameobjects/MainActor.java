@@ -25,7 +25,7 @@ public class MainActor {
             bulletsManager.create(position.cpy(), new Vector2(0, -1), 15f);
         }
 
-        bulletsManager.update();
+        bulletsManager.update(delta);
     }
 
     public void onClick() {

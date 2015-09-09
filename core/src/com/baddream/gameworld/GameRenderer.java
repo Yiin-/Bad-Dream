@@ -66,7 +66,7 @@ public class GameRenderer {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         // Kulkos
-        shapeRenderer.setColor(1, 0, 0, 1);
+        shapeRenderer.setColor(0, 0, 1, 1);
         for(Bullet bullet : gameWorld.getMainActor().getBulletsManager().getBullets()) {
             shapeRenderer.circle(bullet.getPosition().x, bullet.getPosition().y, 3);
         }
@@ -76,6 +76,9 @@ public class GameRenderer {
         // Pagr veikėjas
         shapeRenderer.setColor(0, 0, 0, 1);
         shapeRenderer.circle(gameWorld.getMainActor().getX(), gameWorld.getMainActor().getY(), 9);
+
+        shapeRenderer.setColor(1, 0, 0, 1);
+        shapeRenderer.circle(gameWorld.getEnemy().getPosition().x, gameWorld.getEnemy().getPosition().y, 50);
         shapeRenderer.end();
     }
 }
