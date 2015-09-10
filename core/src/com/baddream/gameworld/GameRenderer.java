@@ -1,6 +1,7 @@
 package com.baddream.gameworld;
 
 import com.baddream.gameobjects.Bullet;
+import com.baddream.gameobjects.Enemy;
 import com.baddream.helpers.AssetLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -77,8 +78,12 @@ public class GameRenderer {
         shapeRenderer.setColor(0, 0, 0, 1);
         shapeRenderer.circle(gameWorld.getMainActor().getX(), gameWorld.getMainActor().getY(), 9);
 
-        shapeRenderer.setColor(1, 0, 0, 1);
-        shapeRenderer.circle(gameWorld.getEnemy().getPosition().x, gameWorld.getEnemy().getPosition().y, 50);
+        Enemy enemy = gameWorld.getEnemy();
+
+        if(enemy.isAlive()) {
+            shapeRenderer.setColor(1, 0, 0, 1);
+            shapeRenderer.circle(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth());
+        }
         shapeRenderer.end();
     }
 }

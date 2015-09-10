@@ -34,7 +34,6 @@ public class MainActor {
 
     private void shoot() {
         Gdx.app.log("MainActor", "shoot");
-        //AssetLoader.createExplosionFX(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
     }
 
     public Vector2 getPosition() {

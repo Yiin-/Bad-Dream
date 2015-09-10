@@ -26,6 +26,11 @@ public class BulletsManager {
         activeBullets.add(bullet);
     }
 
+    public void remove(Bullet bullet) {
+        activeBullets.removeValue(bullet, true);
+        bulletPool.free(bullet);
+    }
+
     public void update(float delta) {
         for (Bullet activeBullet : activeBullets) {
             activeBullet.update(delta);

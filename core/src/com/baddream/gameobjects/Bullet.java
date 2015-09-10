@@ -14,7 +14,6 @@ public class Bullet implements Pool.Poolable {
     private boolean alive;
 
     public Bullet() {
-        Gdx.app.log("Bullet", "created");
         alive = false;
         this.position = new Vector2();
     }

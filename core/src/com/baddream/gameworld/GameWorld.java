@@ -1,5 +1,6 @@
 package com.baddream.gameworld;
 
+import com.baddream.gameobjects.Bullet;
 import com.baddream.gameobjects.Enemy;
 import com.baddream.gameobjects.MainActor;
 import com.badlogic.gdx.Gdx;
@@ -15,14 +16,21 @@ public class GameWorld {
         Gdx.app.log("GameWorld", "created");
 
         mainActor = new MainActor(0, 0);
-        enemy = new Enemy(300, 200);
+        enemy = new Enemy(300, 200, 50f);
     }
 
     public void update(float delta) {
-        Gdx.app.log("GameWorld", "update");
-
         mainActor.update(delta);
         enemy.update(delta);
+
+        for (Bullet b : mainActor.getBulletsManager().getBullets()) {
+            if(enemy.isAlive()) {
+                if (enemy.isColliding(b.getPosition())) {
+                    enemy.hit(0.7f);
+                    mainActor.getBulletsManager().remove(b);
+                }
+            }
+        }
     }
 
     public MainActor getMainActor() {
